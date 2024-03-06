@@ -36,9 +36,13 @@ import me.saket.telephoto.flick.FlickToDismissState
 import me.saket.telephoto.flick.rememberFlickToDismissState
 import me.saket.telephoto.sample.MediaViewerScreenKey
 import me.saket.telephoto.sample.gallery.MediaItem
+import me.saket.telephoto.subsamplingimage.SubSamplingImage
+import me.saket.telephoto.subsamplingimage.SubSamplingImageSource
+import me.saket.telephoto.subsamplingimage.rememberSubSamplingImageState
 import me.saket.telephoto.zoomable.coil.ZoomableAsyncImage
 import me.saket.telephoto.zoomable.rememberZoomableImageState
 import me.saket.telephoto.zoomable.rememberZoomableState
+import me.saket.telephoto.zoomable.zoomable
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -57,7 +61,7 @@ internal fun MediaViewerScreen(key: MediaViewerScreenKey) {
         .padding(contentPadding)
         .fillMaxSize(),
       state = pagerState,
-      beyondBoundsPageCount = 1,
+      beyondBoundsPageCount = 0,
     ) { pageNum ->
       MediaPage(
         modifier = Modifier.fillMaxSize(),
@@ -122,6 +126,20 @@ private fun MediaPage(
         ) {
           CircularProgressIndicator(color = Color.White)
         }
+      }
+      is MediaItem.Asset -> {
+        val imageState = rememberSubSamplingImageState(
+          zoomableState = zoomableState,
+          imageSource = SubSamplingImageSource.asset(model.assetName)
+        )
+
+        SubSamplingImage(
+          modifier = modifier
+            .fillMaxSize()
+            .zoomable(zoomableState),
+          state = imageState,
+          contentDescription = model.caption,
+        )
       }
     }
   }

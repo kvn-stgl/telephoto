@@ -53,27 +53,24 @@ class SampleActivity : AppCompatActivity() {
     val album = MediaAlbum(
       items = listOf(
         // Photo by Anita Austvika on https://unsplash.com/photos/yFxAORZcJQk.
-        MediaItem.Image(
-          fullSizedUrl = "https://images.unsplash.com/photo-1678465952838-c9d7f5daaa65",
-          placeholderImageUrl = "https://images.unsplash.com/photo-1678465952838-c9d7f5daaa65?w=100",
-          caption = "Breakfast",
+        MediaItem.Asset(
+          assetName = "test3.jpg",
+          caption = "Asset Breakfast",
         ),
         // Photos by Romain Guy on https://www.flickr.com/photos/romainguy/.
-        MediaItem.Image(
-          fullSizedUrl = "https://live.staticflickr.com/65535/46217553745_fa38e0e7f0_o_d.jpg",
-          placeholderImageUrl = "https://live.staticflickr.com/65535/46217553745_e8d9242548_w_d.jpg",
-          caption = "Follow the light",
+        MediaItem.Asset(
+          assetName = "test2.jpg",
+          caption = "Asset Follow the light",
         ),
-        MediaItem.Image(
-          fullSizedUrl = "https://live.staticflickr.com/2809/11679312514_3f759b77cd_o_d.jpg",
-          placeholderImageUrl = "https://live.staticflickr.com/2809/11679312514_7592396e9f_w_d.jpg",
-          caption = "Flamingo",
+        MediaItem.Asset(
+          assetName = "test1.jpg",
+          caption = "Asset Flamingo",
         ),
-        MediaItem.Image(
-          fullSizedUrl = "https://live.staticflickr.com/6024/5911366388_600e7e6734_o_d.jpg",
-          placeholderImageUrl = "https://i.imgur.com/bQtqkj6.jpg",
-          caption = "Sierra Sunset",
-        ),
+//        MediaItem.Image(
+//          fullSizedUrl = "https://live.staticflickr.com/6024/5911366388_600e7e6734_o_d.jpg",
+//          placeholderImageUrl = "https://i.imgur.com/bQtqkj6.jpg",
+//          caption = "MediaItem Sierra Sunset",
+//        ),
       )
     )
     setContent {

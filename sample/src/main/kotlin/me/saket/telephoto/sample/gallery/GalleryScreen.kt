@@ -96,11 +96,15 @@ private fun AlbumGrid(
         val colorScheme = MaterialTheme.colorScheme
         val captionBackground = remember { Animatable(colorScheme.surface) }
 
+        val data = when(item) {
+          is MediaItem.Asset -> "file:///android_asset/${item.assetName}"
+          is MediaItem.Image -> item.placeholderImageUrl
+        }
+
         AsyncImage(
           modifier = Modifier.fillMaxSize(),
           model = ImageRequest.Builder(LocalContext.current)
-            .data(item.placeholderImageUrl)
-            .memoryCacheKey(item.placeholderImageUrl)
+            .data(data)
             .crossfade(300)
             .allowHardware(false)
             .listener(onSuccess = { _, result ->

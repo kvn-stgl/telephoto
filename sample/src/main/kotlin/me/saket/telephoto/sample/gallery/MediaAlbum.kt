@@ -1,6 +1,7 @@
 package me.saket.telephoto.sample.gallery
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -18,4 +19,12 @@ sealed interface MediaItem : Parcelable {
     override val placeholderImageUrl: String?,
     override val caption: String,
   ) : MediaItem
+
+  @Parcelize
+  data class Asset(
+    val assetName: String,
+    override val caption: String,
+  ) : MediaItem {
+    @IgnoredOnParcel override val placeholderImageUrl: String? = null
+  }
 }
